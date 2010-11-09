@@ -1,35 +1,43 @@
 
 INSTRUCTIONS FOR DEVELOPERS:
 
-Authorization and Git
+Pushing a read-only copy of the git repo master branch to the google code SVN repo.
+--
 
-All source code for the plugin is managed in a Git master repository. Currently this repository is hosted on GitHub, which is a great site that makes working with, and sharing, Git managed code so much better.
+Based on an article found at :
+http://blog.nanorails.com/articles/2008/1/31/git-to-svn-read-only
 
-You can browse the master Git repo here:
+Setup:
 
-http://github.com/DocSavage/rails-authorization-plugin/tree/master
+Clone a local copy of the git repo from GitHub:
 
-Authorization @ GitHub
+'git clone git@github.com:DocSavage/rails-authorization-plugin.git'
 
-If you want to learn more about how you can use GitHub to create your own fork of the Authorization repository and use that as the base for your enhancements this excellent article provides a great start:
+cd rails-authorization-plugin
 
-http://railsontherun.com/2008/3/3/how-to-use-github-and-submit-a-patch
+edit .git/config and add the following to the end:
+
+--
+[svn-remote "googlecode"]
+  url = https://rails-authorization-plugin.googlecode.com/svn/trunk
+  fetch = :refs/remotes/googlecode
+--
+
+run : 'git svn fetch'
+
+run : 'git checkout -b local-svn googlecode'
+
+run : 'git svn rebase'
+
+run : 'git merge master'
+
+run : 'git svn dcommit'
 
 
-Testing
+Now in the future as new changes are commit to master, do this to publish to GoogleCode:
 
-We request that all patches be fully tested prior to submission and we would like all code changes to be accompanied wherever possible by valid passing tests. You can test the application by downloading our most recent test repository from Git and running the tests as instructed in the README. Please submit a separate patch against the test repo to accompany any plugin change patches.
+$ git checkout local-svn
+$ git merge master
+$ git svn dcommit
 
-http://github.com/grempe/rails-authorization-plugin-test/tree/master
-
-Instructions for using the test app are available:
-
-http://github.com/grempe/rails-authorization-plugin-test/tree/master/README
-
-We also welcome any patches that would integrate a plugin testing framework (RSpec) into the plugin itself so we could use the test app only for demo purposes and be able to run the suite of tests directly in the plugin code base.
-
-Submitting Patches
-
-The recommended way to submit patches is to initiate a pull request from a Git fork @ GitHub.
-
-However, we will also accept patches submitted on the Authorization Google Group, or by email.
+And thats it!

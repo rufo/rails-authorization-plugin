@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/lib/authorization'
-
-ActionController::Base.send( :include, Authorization::Base )
-ActionView::Base.send( :include, Authorization::Base::ControllerInstanceMethods )
+puts "AUTHORIZATION INIT"
+ActionController::Base.send( :include, Authorization::Base ) if defined?(ActionController)
+ActionView::Base.send( :include, Authorization::Base::ControllerInstanceMethods ) if defined?(ActionView)
 
 # You can perform authorization at varying degrees of complexity.
 # Choose a style of authorization below (see README.txt) and the appropriate

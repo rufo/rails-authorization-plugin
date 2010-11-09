@@ -38,6 +38,4 @@ module Authorization #:nodoc:
   class CannotSetObjectRoleWhenSimpleRoleTable < AuthorizationError
   end
 
-  class CannotGetAuthorizables < AuthorizationError
-  end
 end
