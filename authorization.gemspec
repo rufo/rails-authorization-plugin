@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version = "1.0.10"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.date = %q{2010-11-08}
+  s.date = %q{2010-11-10}
   s.extra_rdoc_files = [
     "README.rdoc",
      "README.txt",
@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
      "UPGRADE.rdoc",
      "VERSION",
      "about.yml",
+     "authorization.gemspec",
      "doc/authorization_example.gif",
      "doc/authorization_example.rb",
      "generators/role_model/USAGE",
