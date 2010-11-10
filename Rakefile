@@ -28,6 +28,8 @@ begin
     gem.summary = "Authoization plugin for authorizing."
     gem.files = Dir["*", "{lib}/**/*","{generators}/**/*","{tasks}/**/*","{doc}/**/*"]
     gem.require_paths=[".","lib"]
+    gem.author="Bill Katz"
+    gem.homepage="https://github.com/g5search/rails-authorization-plugin"
   end
   
   Jeweler::GemcutterTasks.new
