@@ -1,4 +1,3 @@
-puts "AUTHORIZATION"
 require File.dirname(__FILE__) + '/publishare/exceptions'
 require File.dirname(__FILE__) + '/publishare/parser'
 
