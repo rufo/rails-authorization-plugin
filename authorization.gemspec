@@ -40,16 +40,18 @@ Gem::Specification.new do |s|
      "init.rb",
      "install.rb",
      "lib/authorization.rb",
+     "lib/base.rb",
      "lib/publishare/exceptions.rb",
      "lib/publishare/hardwired_roles.rb",
      "lib/publishare/identity.rb",
      "lib/publishare/object_roles_table.rb",
      "lib/publishare/parser.rb",
+     "lib/rails-authorization-plugin/railtie.rb",
      "tasks/authorization_tasks.rake"
   ]
   s.homepage = %q{https://github.com/g5search/rails-authorization-plugin}
   s.rdoc_options = ["--charset=UTF-8"]
-  s.require_paths = [".", "lib"]
+  s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Authoization plugin for authorizing.}
 
