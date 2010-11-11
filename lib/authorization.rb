@@ -3,5 +3,4 @@ require File.dirname(__FILE__) + '/publishare/parser'
 
 module Authorization
   require 'rails-authorization-plugin/railtie' if defined?(Rails)
-  require 'base'
 end

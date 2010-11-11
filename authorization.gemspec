@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bill Katz"]
+  s.autorequire = %q{authorization}
   s.date = %q{2010-11-10}
   s.description = %q{Rails 3 compatible rails-authorization-plugin gem}
   s.extra_rdoc_files = [

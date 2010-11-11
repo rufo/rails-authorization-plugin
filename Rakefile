@@ -31,6 +31,8 @@ begin
     gem.author="Bill Katz"
     gem.homepage="https://github.com/g5search/rails-authorization-plugin"
     gem.description="Rails 3 compatible rails-authorization-plugin gem"
+    gem.has_rdoc=true
+    gem.autorequire='authorization'
   end
   
   Jeweler::GemcutterTasks.new
