@@ -132,7 +132,7 @@ module Authorization
           model_symbol = model_name.to_sym
           if @options[model_symbol]
             @options[model_symbol]
-          elsif instance_variables.include?( '@'+model_name )
+          elsif instance_variables.include?( '@'+model_name ) || instance_variables.include?( ('@'+model_name).to_sym )
             instance_variable_get( '@'+model_name )
           # Note -- while the following code makes autodiscovery more convenient, it's a little too much side effect & security question
           # elsif self.params[:id]
