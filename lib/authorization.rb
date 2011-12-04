@@ -96,7 +96,7 @@ module Authorization
         send( STORE_LOCATION_METHOD ) if respond_to? STORE_LOCATION_METHOD
         if @current_user && !@current_user.nil? && @current_user != :false
           flash[:notice] = @options[:permission_denied_message] || "Permission denied. You cannot access the requested page."
-          redirect_to @options[:permission_denied_redirection] || @current_user.uri
+          redirect_to @options[:permission_denied_redirection] || PERMISSION_DENIED_REDIRECTION
         else
           flash[:notice] = @options[:login_required_message] || "Login is required to access the requested page."
           redirect_to @options[:login_required_redirection] || LOGIN_REQUIRED_REDIRECTION
