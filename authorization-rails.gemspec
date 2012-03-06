@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "UPGRADE.rdoc",
     "VERSION",
     "about.yml",
+    "authorization-rails.gemspec",
     "authorization.gemspec",
     "doc/authorization_example.gif",
     "doc/authorization_example.rb",
