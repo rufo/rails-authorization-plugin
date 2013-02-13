@@ -6,16 +6,13 @@ module Authorization
 
     # Modify these constants in your environment.rb to tailor the plugin to
     # your authentication system
-    if not Object.constants.include? "LOGIN_REQUIRED_REDIRECTION"
-      LOGIN_REQUIRED_REDIRECTION = {
-        :controller => 'session',
-        :action => 'new'
-      }
+    if not Object.constants.include? :LOGIN_REQUIRED_REDIRECTION
+      LOGIN_REQUIRED_REDIRECTION = '/login'
     end
-    if not Object.constants.include? "PERMISSION_DENIED_REDIRECTION"
-      PERMISSION_DENIED_REDIRECTION = ''
+    if not Object.constants.include? :PERMISSION_DENIED_REDIRECTION
+      PERMISSION_DENIED_REDIRECTION = '/permission_denied'
     end
-    if not Object.constants.include? "STORE_LOCATION_METHOD"
+    if not Object.constants.include? :STORE_LOCATION_METHOD
       STORE_LOCATION_METHOD = :store_location
     end
 
@@ -163,14 +160,14 @@ end
 case AUTHORIZATION_MIXIN
   when "hardwired"
     require File.dirname(__FILE__) + '/publishare/hardwired_roles'
-    ActiveRecord::Base.send( :include, 
-      Authorization::HardwiredRoles::UserExtensions, 
-      Authorization::HardwiredRoles::ModelExtensions 
+    ActiveRecord::Base.send( :include,
+      Authorization::HardwiredRoles::UserExtensions,
+      Authorization::HardwiredRoles::ModelExtensions
     )
   when "object roles"
     require File.dirname(__FILE__) + '/publishare/object_roles_table'
-    ActiveRecord::Base.send( :include, 
-      Authorization::ObjectRolesTable::UserExtensions, 
+    ActiveRecord::Base.send( :include,
+      Authorization::ObjectRolesTable::UserExtensions,
       Authorization::ObjectRolesTable::ModelExtensions
     )
 end
