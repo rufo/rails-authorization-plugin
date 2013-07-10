@@ -57,15 +57,11 @@ module Authorization
 
         def get_role( role_name, authorizable_obj )
           if authorizable_obj.is_a? Class
-            Role.find( :first,
-                       :conditions => [ 'name = ? and authorizable_type = ? and authorizable_id IS NULL', role_name, authorizable_obj.to_s ] )
+            Role.where('name = ? and authorizable_type = ? and authorizable_id IS NULL', role_name, authorizable_obj.to_s).first
           elsif authorizable_obj
-            Role.find( :first,
-                       :conditions => [ 'name = ? and authorizable_type = ? and authorizable_id = ?',
-                                        role_name, authorizable_obj.class.base_class.to_s, authorizable_obj.id ] )
+            Role.where('name = ? and authorizable_type = ? and authorizable_id = ?', role_name, authorizable_obj.class.base_class.to_s, authorizable_obj.id).first
           else
-            Role.find( :first,
-                       :conditions => [ 'name = ? and authorizable_type IS NULL and authorizable_id IS NULL', role_name ] )
+            Role.where('name = ? and authorizable_type IS NULL and authorizable_id IS NULL', role_name).first
           end
         end
 
