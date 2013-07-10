@@ -24,12 +24,12 @@ end
 begin
   require "jeweler"
   Jeweler::Tasks.new do |gem|
-    gem.name = "authorization"
+    gem.name = "authorization-rails"
     gem.summary = "Authoization plugin for authorizing."
     gem.files = Dir["*", "{lib}/**/*","{generators}/**/*","{tasks}/**/*","{doc}/**/*"]
     gem.require_paths=[".","lib"]
-    gem.author="Bill Katz"
-    gem.homepage="https://github.com/g5search/rails-authorization-plugin"
+    gem.author="Bill Katz; Arturo Pie"
+    gem.homepage="https://github.com/arturopie/rails-authorization-plugin"
     gem.description="Rails 3 compatible rails-authorization-plugin gem"
   end
   
