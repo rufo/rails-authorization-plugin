@@ -6,16 +6,13 @@ module Authorization
 
     # Modify these constants in your environment.rb to tailor the plugin to
     # your authentication system
-    if not Object.constants.include? "LOGIN_REQUIRED_REDIRECTION"
-      LOGIN_REQUIRED_REDIRECTION = {
-        :controller => 'session',
-        :action => 'new'
-      }
+    if not Object.constants.include? :LOGIN_REQUIRED_REDIRECTION
+      LOGIN_REQUIRED_REDIRECTION = '/login'
     end
-    if not Object.constants.include? "PERMISSION_DENIED_REDIRECTION"
-      PERMISSION_DENIED_REDIRECTION = ''
+    if not Object.constants.include? :PERMISSION_DENIED_REDIRECTION
+      PERMISSION_DENIED_REDIRECTION = '/permission_denied'
     end
-    if not Object.constants.include? "STORE_LOCATION_METHOD"
+    if not Object.constants.include? :STORE_LOCATION_METHOD
       STORE_LOCATION_METHOD = :store_location
     end
 
@@ -96,7 +93,7 @@ module Authorization
         send( STORE_LOCATION_METHOD ) if respond_to? STORE_LOCATION_METHOD
         if @current_user && !@current_user.nil? && @current_user != :false
           flash[:notice] = @options[:permission_denied_message] || "Permission denied. You cannot access the requested page."
-          redirect_to @options[:permission_denied_redirection] || @current_user.uri
+          redirect_to @options[:permission_denied_redirection] || PERMISSION_DENIED_REDIRECTION
         else
           flash[:notice] = @options[:login_required_message] || "Login is required to access the requested page."
           redirect_to @options[:login_required_redirection] || LOGIN_REQUIRED_REDIRECTION
@@ -132,7 +129,7 @@ module Authorization
           model_symbol = model_name.to_sym
           if @options[model_symbol]
             @options[model_symbol]
-          elsif instance_variables.include?( '@'+model_name )
+          elsif instance_variables.include?( '@'+model_name ) || instance_variables.include?( ('@'+model_name).to_sym )
             instance_variable_get( '@'+model_name )
           # Note -- while the following code makes autodiscovery more convenient, it's a little too much side effect & security question
           # elsif self.params[:id]
@@ -163,14 +160,14 @@ end
 case AUTHORIZATION_MIXIN
   when "hardwired"
     require File.dirname(__FILE__) + '/publishare/hardwired_roles'
-    ActiveRecord::Base.send( :include, 
-      Authorization::HardwiredRoles::UserExtensions, 
-      Authorization::HardwiredRoles::ModelExtensions 
+    ActiveRecord::Base.send( :include,
+      Authorization::HardwiredRoles::UserExtensions,
+      Authorization::HardwiredRoles::ModelExtensions
     )
   when "object roles"
     require File.dirname(__FILE__) + '/publishare/object_roles_table'
-    ActiveRecord::Base.send( :include, 
-      Authorization::ObjectRolesTable::UserExtensions, 
+    ActiveRecord::Base.send( :include,
+      Authorization::ObjectRolesTable::UserExtensions,
       Authorization::ObjectRolesTable::ModelExtensions
     )
 end
