@@ -107,7 +107,7 @@ module Authorization
           @options[:user]
         elsif @options[:get_user_method]
           send( @options[:get_user_method] )
-        elsif self.respond_to? :current_user
+        elsif self.respond_to? :current_user, true
           current_user
         elsif not @options[:allow_guests]
           raise( CannotObtainUserObject, "Couldn't find #current_user or @user, and nothing appropriate found in hash" )
